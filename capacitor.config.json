@@ -1,0 +1,11 @@
+{
+	"appId": "com.universalSpirituality.BhaktiGanga",
+	"appName": "Bhakti Ganga",
+	"webDir": "bakthiganga",
+	"bundledWebRuntime": false,
+	"GoogleAuth": {
+		"scopes": ["profile", "email"],
+		"serverClientId": "294072448329-r47bs41339i96rltan63v8jsqhujpfsa.apps.googleusercontent.com",
+		"forceCodeForRefreshToken": "true"
+	}
+}

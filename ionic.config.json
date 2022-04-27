@@ -1,0 +1,7 @@
+{
+  "name": "MusicAopTuto",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

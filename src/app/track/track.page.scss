@@ -1,0 +1,22 @@
+.image-box {
+    position: relative;
+    z-index: 0;
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 5%;
+
+    img {
+        max-height: 40vh;
+      }
+}
+.album-info {
+    color: #fff;
+    margin-left: 11px;
+    p {
+        font-weight: bold;
+    }
+}
+
+ion-content {
+    --background: linear-gradient(var(--custombg) 20%, var(--ion-color-dark) 40%);
+}

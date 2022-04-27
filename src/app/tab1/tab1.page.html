@@ -1,0 +1,65 @@
+<ion-content *ngIf="data2">
+
+  <div class="ion-text-center loading" *ngIf="loading">
+    <ion-spinner class="ion-text-right" color="secondary" name="lines"></ion-spinner>
+  </div>
+
+  <ion-row class="ion-no-padding" *ngFor="let entry of data2">
+
+    <ion-col size="12">
+      <h2 class="section-header">{{entry.title}} </h2>
+    </ion-col>
+
+    <ion-col size="12">
+
+    <ion-slides #slides [options]="opts2">
+      <ion-slide *ngFor="let album of entry.albums" tappable (click)="openAlbum(album)"> 
+        <img [src]="'/assets/images/'+dasherize(album.src_name)+'.jpg'">
+        <span class="title">{{ album.title }}</span>
+      </ion-slide>
+    </ion-slides>
+  </ion-col>
+
+  <ion-col class="ion-text-right" size="6" *ngIf="platForm == 'desktop'">
+    <ion-button fill="clear" (click)="slides.slidePrev()">
+      <ion-icon name="arrow-back-outline" size="large" color="light" slot="icon-only"></ion-icon>
+    </ion-button>
+  </ion-col>
+
+  <ion-col class="ion-text-left" size="6" *ngIf="platForm == 'desktop'">
+    <ion-button fill="clear" class = "ion-text-right" (click)="slides.slideNext()">
+      <ion-icon name="arrow-forward-outline" size="large" color="light" slot="icon-only"></ion-icon>
+    </ion-button>
+  </ion-col>
+
+  </ion-row>
+
+<ion-row class="ion-no-padding" *ngFor="let entry of Tracks">
+
+<ion-col size="8">
+  <h2 class="section-header">{{entry.title}} </h2>
+</ion-col>
+
+  <ion-slides #slides [options]="opts2">
+    <ion-slide *ngFor="let album of entry.track" tappable (click)="playTrack(album)">
+      <img [src]="'/assets/images/'+dasherize(album.img_name)+'.jpg'">
+      <span class="title">{{ album.track_name }}</span>
+    </ion-slide>
+  </ion-slides>
+
+  <ion-col class="ion-text-right" size="6" *ngIf="platForm == 'desktop'">
+    <ion-button fill="clear" (click)="slides.slidePrev()">
+      <ion-icon name="arrow-back-outline" size="large" color="light" slot="icon-only"></ion-icon>
+    </ion-button>
+  </ion-col>
+
+  <ion-col class="ion-text-left" size="6" *ngIf="platForm == 'desktop'">
+    <ion-button fill="clear" class = "ion-text-right" (click)="slides.slideNext()">
+      <ion-icon name="arrow-forward-outline" size="large" color="light" slot="icon-only"></ion-icon>
+    </ion-button>
+  </ion-col>
+
+</ion-row>
+
+</ion-content> 
+

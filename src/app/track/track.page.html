@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar [style.--background]="playerData.bg_color" *ngIf="playerData">
+    <ion-buttons slot="start">
+      <ion-back-button text="" color="light" defaultHref="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">{{trackTitle}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content scrollEvents="true"  [fullscreen]="true" *ngIf="playerData" [style.--custombg]="playerData.bg_color">
+
+  <!-- Image of the album -->
+  <div class="ion-text-center image-box" *ngIf="activeTrack">
+    <img [src]="'/assets/images/albums/'+dasherize(activeTrack.img_name)+'.jpg'">
+  </div>
+
+  <!-- Rest of the page content -->
+  <div class="main">
+
+    <!-- General information -->
+    <ion-row class="album-info ion-self-center ion-text-center">
+      <ion-col size="12" >
+        <p>{{trackTitle}}</p>
+        <span>Album: {{playerData.title}}, Singer: {{singer}}</span>
+      </ion-col>
+
+
+        <ion-col size="2" class="ion-text-center ion-self-center ion-no-padding ion-no-margin">
+          <p class="ion-no-padding" color="primary">{{ ((durationStart - 19800) * 1000) | date: 'mm:ss' }}</p>
+        </ion-col>
+  
+        <ion-col size="8" class="ion-self-center ion-text-center ion-no-padding ion-no-margin">
+          <ion-range class = "ion-no-margin" #range [(ngModel)]="progress" max="100" color="success" (touchend)="seek()" (mouseup)="seek()"></ion-range>
+        </ion-col>
+  
+        <ion-col size="2" class="ion-self-center ion-text-center ion-no-padding ion-no-margin">
+          <p  class="ion-no-padding" color="light-contrast">{{ ((durationEnd - durationStart - 19800) * 1000) | date: 'mm:ss' }}</p>
+        </ion-col>
+
+        <ion-col size="12" class="ion-self-center ion-text-center ion-no-padding ion-no-margin">
+
+          <ion-button fill = "clear" (click) = "prev()">
+            <ion-icon slot = "icon-only" name = "play-skip-back" color="light" size="large"></ion-icon>
+          </ion-button> 
+     
+             <ion-button fill = "clear" (click) = "togglePlayer(false)" *ngIf = "!isPlaying">
+               <ion-icon slot = "icon-only" name = "play-sharp" color="light" size="large"></ion-icon>
+             </ion-button>
+        
+     
+             <ion-button fill = "clear" (click) = "togglePlayer(true)" *ngIf = "isPlaying">
+               <ion-icon slot = "icon-only" name = "pause" color="light" size="large"></ion-icon>
+             </ion-button>
+     
+             <ion-button fill = "clear" (click) = "next()">
+               <ion-icon slot = "icon-only" name = "play-skip-forward" color="light" size="large"></ion-icon>
+             </ion-button> 
+     
+           </ion-col>
+
+    </ion-row>
+  </div>
+
+</ion-content>

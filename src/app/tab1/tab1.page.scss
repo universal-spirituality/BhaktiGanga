@@ -1,0 +1,36 @@
+ion-content {
+    --padding-top: 40px;
+    --background: #121212;
+}
+
+.section-header {
+    color: #fff;
+    font-family: 'Spotify';
+    font-weight: bold;
+    margin-left: 20px;
+    margin-bottom: 30px;
+}
+
+ion-slides {
+    margin-bottom: 20px;
+}
+
+ion-slide {
+    display: block;
+    text-align: left;
+}
+
+.title {
+    color: #fff;
+    font-family: 'Spotify';
+    font-size: small;
+}
+
+.loading {
+    --background: #121212;
+    position: sticky;
+    z-index: 0;
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 40vh;
+}

@@ -1,0 +1,63 @@
+ion-item {
+    --ion-item-background: #121212;
+    color: #fff;
+
+    p {
+        color: #949494;
+    }
+    img {
+        height: 55px;
+    };
+}
+
+ion-title {
+    color: #fff;
+}
+ion-back-button {
+    color: #fff;
+}
+
+ion-icon {
+    color: #fff;
+}
+
+.main {
+    --ion-background-color: #121212;
+}
+
+ion-title, ion-content {
+    font-family: 'Spotify';
+}
+
+.album-info {
+    color: #fff;
+    margin-left: 11px;
+    p {
+        font-weight: bold;
+    }
+}
+
+.image-box {
+    position: sticky;
+    z-index: 0;
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 5%;
+    img {
+      max-height: 40vh;
+    }
+}
+
+.loading {
+    --background: #121212;
+    position: sticky;
+    z-index: 0;
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 50vh;
+}
+
+ion-content {
+    --background: linear-gradient(var(--custombg) 20%, #121212 40%);
+}
+

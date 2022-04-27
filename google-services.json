@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1050156251270",
+    "project_id": "bhakti-ganga",
+    "storage_bucket": "bhakti-ganga.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1050156251270:android:6009dbefde744a0e4e3907",
+        "android_client_info": {
+          "package_name": "com.universalSpirituality.BhaktiGanga"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1050156251270-logco0rgcn1ag5l4c984n2vtoanphteb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVtxp1JhmwnL0Sz7RxtjrHaKCBMnOXT8w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1050156251270-logco0rgcn1ag5l4c984n2vtoanphteb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
