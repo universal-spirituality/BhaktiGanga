@@ -24,6 +24,7 @@ export class PlayerDataService {
   tracks = [];
   trackIndex;
   timer;
+  isSongLoading:boolean = false;
 
   constructor() { }
 
@@ -91,6 +92,8 @@ export class PlayerDataService {
 
   start(track, playAll = false) {
 
+    this.isSongLoading = true;
+
     var pathToFile = ''; 
 
     if (track) {
@@ -119,6 +122,8 @@ export class PlayerDataService {
         src: [environment.AudioUrlPath+ pathToFile + track.audio_name + '.mp3?alt=media'],
 
         onplay: () => {
+
+          this.isSongLoading = false;
   
           console.log('play');
 

@@ -6,7 +6,17 @@
         <div class="progress" [style.width] = "progress +'%'"></div>
       </div>
   
-    <ion-row class="playerTab">
+
+      <ion-row class="playerTab" *ngIf="isSongLoading()">
+
+        <div class="ion-text-center loading1" >
+          <ion-spinner class="ion-text-right" color="secondary" name="dots"></ion-spinner>
+        </div>
+
+      </ion-row>
+
+
+    <ion-row class="playerTab" *ngIf="!isSongLoading()">
 
       <ion-col size="2" class="ion-no-padding" *ngIf="activeTrack">
         <div class="ion-text-center image-box">

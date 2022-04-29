@@ -70,6 +70,10 @@ export class TabsPage {
 
   }
 
+  isSongLoading() {
+   return this.playerDataService.isSongLoading ;
+  }
+
   setSelectedTab() {
     console.log('called');
     this.selected = this.tabs.getSelected();
