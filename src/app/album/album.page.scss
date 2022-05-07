@@ -1,13 +1,29 @@
-ion-item {
+ion-list, ion-item {
     --ion-item-background: #121212;
     color: #fff;
 
     p {
         color: #949494;
     }
-    img {
+
+    .img1 {
         height: 55px;
-    };
+        position: relative;
+        z-index: 1;
+    }
+      
+    .img2 {
+        height: 55px;
+        position: absolute;
+        z-index: 2;
+    }
+
+    .img3 {
+        height: 55px;
+        opacity: 0.2;
+        position: relative;
+        z-index: 2;
+    }
 }
 
 ion-title {
@@ -58,6 +74,6 @@ ion-title, ion-content {
 }
 
 ion-content {
-    --background: linear-gradient(var(--custombg) 20%, #121212 40%);
+    --background: linear-gradient(var(--custombg) 20%, #121212 60%);
 }
 

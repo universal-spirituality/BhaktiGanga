@@ -16,6 +16,7 @@ export class AlbumPage implements OnInit {
 
   data = null;
   data2 = null;
+
   constructor(private activatedRoute: ActivatedRoute, 
               private playerDataService:PlayerDataService, 
               public http: HttpClient, 
@@ -68,6 +69,11 @@ export class AlbumPage implements OnInit {
     this.router.navigateByUrl(`/tabs/tab1/track/${titleEscaped}`);
   }
 
+  isActiveTrack(t)
+  {
+    return t==this.playerDataService.GetActiveTrack();
+  }
+  
   isFav(t)
   {
    // return this.userDataService.isFav(t.id);

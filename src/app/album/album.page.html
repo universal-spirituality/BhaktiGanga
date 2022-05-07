@@ -53,7 +53,10 @@
       <ion-item *ngFor="let t of data2.tracks" lines="none">
         
         <ion-label item-content tappable (click)="playTrack(t)">{{ t.track_name }} </ion-label>
-        <img slot="start" tappable (click)="playTrack(t)" [src]="'/assets/images/'+dasherize(t.img_name)+'.jpg'">
+        
+        <img class= "img2" slot="start" [src]="'/assets/images/Z23N.gif'" *ngIf="isActiveTrack(t)">
+        <img class="img1" slot="start" tappable (click)="playTrack(t)" [src]="'/assets/images/'+dasherize(t.img_name)+'.jpg'" *ngIf="!isActiveTrack(t)">
+        <img class="img3" slot="start" tappable (click)="playTrack(t)" [src]="'/assets/images/'+dasherize(t.img_name)+'.jpg'" *ngIf="isActiveTrack(t)">
 
         <ion-button fill="clear">
           <ion-icon name="arrow-down-circle-outline" slot="icon-only"></ion-icon>
