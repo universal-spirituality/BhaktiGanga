@@ -33,6 +33,7 @@
     "@ionic/angular": "^5.5.2",
     "@ionic/cli": "^6.19.0",
     "@mui/material": "^5.6.3",
+    "cordova-res": "^0.15.4",
     "firebase": "^7.24.0",
     "howler": "^2.2.3",
     "rxfire": "^6.0.0",
