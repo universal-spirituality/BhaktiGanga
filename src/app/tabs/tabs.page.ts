@@ -5,6 +5,7 @@ import { Router,  RouterEvent, NavigationEnd } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { Howl } from 'howler';
 import { Pipe, PipeTransform } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class TabsPage {
   @ViewChild(IonTabs) tabs:IonTabs;
   @ViewChild('range') range:IonRange;
 
+  img = null;
   selected  = '';
   singer = '';
   playerData = '';
@@ -30,6 +32,7 @@ export class TabsPage {
 
   constructor(private playerDataService:PlayerDataService, private router: Router) {
 
+   this.img = environment.ImgUrlPath;
    this.playerDataService.GetPlayerDataObservable().subscribe(albumDataForTrack => {console.log('DataForTrack', albumDataForTrack)
    this.playerData = albumDataForTrack;
    });

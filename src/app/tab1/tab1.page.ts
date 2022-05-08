@@ -14,6 +14,7 @@ export class Tab1Page implements OnInit{
 
   SungByDevi:any = [];
   SungByDattaSwami:any = [];
+  img = null;
 
   loading:boolean = true;
   Tracks = [];
@@ -31,7 +32,6 @@ export class Tab1Page implements OnInit{
     spaceBetween:20,
     freeMode: true,
     zoom: false,
-    speed: 5000,
     
     breakpoints: {
       320: {slidesPerView: 2.4,},
@@ -44,6 +44,7 @@ export class Tab1Page implements OnInit{
 
   constructor(private router: Router, public http: HttpClient, platform: Platform, private playerDataService:PlayerDataService) {
 
+    this.img = environment.ImgUrlPath;
     platform.ready().then(() => {
       console.log('Width: ' + platform.width());
       console.log('Height: ' + platform.height());

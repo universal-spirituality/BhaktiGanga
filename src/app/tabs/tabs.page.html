@@ -20,7 +20,7 @@
 
       <ion-col size="2" class="ion-no-padding" *ngIf="activeTrack">
         <div class="ion-text-center image-box">
-          <img [src]="'/assets/images/'+dasherize(activeTrack.img_name)+'.jpg'">
+          <img [src]="img+dasherize(activeTrack.img_name)+'.jpg'+'?alt=media'">
         </div>
       </ion-col>
 

@@ -14,7 +14,7 @@
 
     <ion-slides #slides [options]="opts2">
       <ion-slide *ngFor="let album of entry.albums" tappable (click)="openAlbum(album)"> 
-        <img [src]="'/assets/images/'+dasherize(album.src_name)+'.jpg'">
+        <img [src]="img+dasherize(album.src_name)+'.jpg'+'?alt=media'">
         <span class="title">{{ album.title }}</span>
       </ion-slide>
     </ion-slides>
@@ -42,7 +42,7 @@
 
   <ion-slides #slides [options]="opts2">
     <ion-slide *ngFor="let album of entry.track" tappable (click)="playTrack(album)">
-      <img [src]="'/assets/images/'+dasherize(album.img_name)+'.jpg'">
+      <img [src]="img+dasherize(album.img_name)+'.jpg'+'?alt=media'">
       <span class="title">{{ album.track_name }}</span>
     </ion-slide>
   </ion-slides>

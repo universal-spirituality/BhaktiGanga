@@ -16,6 +16,7 @@ export class AlbumPage implements OnInit {
 
   data = null;
   data2 = null;
+  img = null;
 
   constructor(private activatedRoute: ActivatedRoute, 
               private playerDataService:PlayerDataService, 
@@ -27,6 +28,8 @@ export class AlbumPage implements OnInit {
     const decodedTitle = decodeURIComponent(title);
     this.data = albums[decodedTitle];
     console.log('this: ', this.data);
+
+    this.img = environment.ImgUrlPath;
 
     var url = environment.urlPath + '/GetAlbum.php?album=' + title;
     this.http
@@ -73,7 +76,7 @@ export class AlbumPage implements OnInit {
   {
     return t==this.playerDataService.GetActiveTrack();
   }
-  
+
   isFav(t)
   {
    // return this.userDataService.isFav(t.id);

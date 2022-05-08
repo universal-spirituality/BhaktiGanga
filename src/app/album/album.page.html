@@ -18,7 +18,7 @@
 
       <!-- Image of the album -->
       <div class="ion-text-center image-box" #cover>
-        <img  [src]="'/assets/images/'+dasherize(data2.album.src_name)+'.jpg'" *ngIf="data2">
+        <img  [src]="img+dasherize(data2.album.src_name)+'.jpg'+'?alt=media'" *ngIf="data2">
       </div>
 
   <!-- Rest of the page content -->
@@ -55,8 +55,8 @@
         <ion-label item-content tappable (click)="playTrack(t)">{{ t.track_name }} </ion-label>
         
         <img class= "img2" slot="start" [src]="'/assets/images/Z23N.gif'" *ngIf="isActiveTrack(t)">
-        <img class="img1" slot="start" tappable (click)="playTrack(t)" [src]="'/assets/images/'+dasherize(t.img_name)+'.jpg'" *ngIf="!isActiveTrack(t)">
-        <img class="img3" slot="start" tappable (click)="playTrack(t)" [src]="'/assets/images/'+dasherize(t.img_name)+'.jpg'" *ngIf="isActiveTrack(t)">
+        <img class="img1" slot="start" tappable (click)="playTrack(t)" [src]="img+dasherize(t.img_name)+'.jpg'+'?alt=media'" *ngIf="!isActiveTrack(t)">
+        <img class="img3" slot="start" tappable (click)="playTrack(t)" [src]="img+dasherize(t.img_name)+'.jpg'+'?alt=media'" *ngIf="isActiveTrack(t)">
        <!--
         <ion-button fill="clear">
           <ion-icon name="arrow-down-circle-outline" slot="icon-only"></ion-icon>
