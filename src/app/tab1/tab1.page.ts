@@ -30,6 +30,7 @@ export class Tab1Page implements OnInit{
     slideOffsetBefore: 20,
     spaceBetween:20,
     freeMode: true,
+    zoom: false,
     
     breakpoints: {
       320: {slidesPerView: 2.4,},
