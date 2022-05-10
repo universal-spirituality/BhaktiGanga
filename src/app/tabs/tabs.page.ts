@@ -1,10 +1,7 @@
-import { Component, Injectable, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonRange, IonTabs } from '@ionic/angular';
 import { PlayerDataService } from '../Services/player-data.service';
-import { Router,  RouterEvent, NavigationEnd } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
-import { Howl } from 'howler';
-import { Pipe, PipeTransform } from '@angular/core';
+import { Router} from '@angular/router';
 import { environment } from 'src/environments/environment';
 
 

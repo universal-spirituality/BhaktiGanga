@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Platform } from '@ionic/angular';
 import { PlayerDataService } from '../Services/player-data.service';
 import { environment } from '../../environments/environment';
+import { ApiService } from '../Services/api.service';
 
 @Component({
   selector: 'app-tab1',
@@ -42,7 +43,8 @@ export class Tab1Page implements OnInit{
 
   }
 
-  constructor(private router: Router, public http: HttpClient, platform: Platform, private playerDataService:PlayerDataService) {
+  constructor(private router: Router, public http: HttpClient, platform: Platform, private playerDataService:PlayerDataService,
+    private api: ApiService) {
 
     this.img = environment.ImgUrlPath;
     platform.ready().then(() => {
@@ -75,7 +77,21 @@ export class Tab1Page implements OnInit{
 
   ngOnInit() {
 
-    this.http
+    this.api.getData(environment.urlPath + '/Tracks.php', false).subscribe((data) =>{
+
+      
+      this.data2[0] = { title: 'All Albums', albums: data[0]};
+
+      this.Tracks[0] = { title: 'Sung By Shri Datta Swami', track: data[1]};
+      this.Tracks[1] = { title: 'Sung By Smt. Devi', track: data[2]};
+      this.Tracks[2] = { title: 'Sanskrit Bhajans', track: data[3]};
+      this.Tracks[3] = { title: 'Telugu Bhajans', track: data[4]};
+
+      this.loading = false;
+
+    });
+
+ /*   this.http
     .get(environment.urlPath + '/Tracks.php')
     .subscribe((data) => {
 
@@ -88,6 +104,7 @@ export class Tab1Page implements OnInit{
 
       this.loading = false;
     });
+    */
   }
 
   playTrack(t) {

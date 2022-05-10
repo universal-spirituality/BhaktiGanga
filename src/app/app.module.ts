@@ -8,6 +8,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PlayerDataService } from './Services/player-data.service';
 import { HttpClientModule } from '@angular/common/http';
+import { IonicStorageModule } from '@ionic/storage-angular';
+import { Drivers } from '@ionic/storage'
+import * as CordovaSQLiteDriver from 'localforage-cordovasqlitedriver';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,7 +19,11 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule, 
-    HttpClientModule],
+    HttpClientModule,
+    IonicStorageModule.forRoot({
+      driverOrder: [CordovaSQLiteDriver._driver, Drivers.IndexedDB]
+    })
+  ],
   providers: [PlayerDataService,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

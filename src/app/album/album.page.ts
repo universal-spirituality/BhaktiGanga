@@ -5,6 +5,7 @@ import { PlayerDataService } from '../Services/player-data.service';
 import { HttpClient } from '@angular/common/http';
 import { Router} from '@angular/router';
 import { environment } from '../../environments/environment';
+import { ApiService } from '../Services/api.service';
 
 @Component({
   selector: 'app-album',
@@ -21,7 +22,8 @@ export class AlbumPage implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, 
               private playerDataService:PlayerDataService, 
               public http: HttpClient, 
-              private router: Router) { }
+              private router: Router,
+              private api: ApiService) { }
 
   ngOnInit() {
     const title = this.activatedRoute.snapshot.paramMap.get('title');
@@ -32,6 +34,19 @@ export class AlbumPage implements OnInit {
     this.img = environment.ImgUrlPath;
 
     var url = environment.urlPath + '/GetAlbum.php?album=' + title;
+    
+    this.api.getData(url, false).subscribe((album) =>{
+
+      var url1 = environment.urlPath + '/GetTracks.php?album=' + album[0].id;
+      this.api.getData(url1, false).subscribe((data) => {
+
+        this.data2 = {album: album[0], tracks: data};
+        this.playerDataService.SetTracks(this.data2.tracks);
+        console.log(this.data2);
+      });
+      
+    });
+
     this.http
     .get(url)
     .subscribe((album) => {
@@ -49,7 +64,7 @@ export class AlbumPage implements OnInit {
       });
 
     });
-
+    
   }
 
   playAll(t)
