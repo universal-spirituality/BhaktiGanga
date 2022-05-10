@@ -18,12 +18,24 @@ export class AlbumPage implements OnInit {
   data = null;
   data2 = null;
   img = null;
+  activeTrack = null;
+  isPlaying = false;
 
   constructor(private activatedRoute: ActivatedRoute, 
               private playerDataService:PlayerDataService, 
               public http: HttpClient, 
-              private router: Router,
-              private api: ApiService) { }
+              private api: ApiService,
+              private router: Router) { 
+
+    this.playerDataService.GetactiveTrackObservable().subscribe(at => {console.log('at', this.activeTrack)
+      this.activeTrack = at;                
+    });
+
+    this.playerDataService.GetisPlayingObservable().subscribe(bt => {console.log('bt', this.isPlaying)
+      this.isPlaying = bt;               
+    });
+
+  }
 
   ngOnInit() {
     const title = this.activatedRoute.snapshot.paramMap.get('title');
@@ -85,11 +97,6 @@ export class AlbumPage implements OnInit {
   track() {
     const titleEscaped = encodeURIComponent('hi');
     this.router.navigateByUrl(`/tabs/tab1/track/${titleEscaped}`);
-  }
-
-  isActiveTrack(t)
-  {
-    return t==this.playerDataService.GetActiveTrack();
   }
 
   isFav(t)
