@@ -17,13 +17,13 @@ export class ApiService {
   
   public getData(url, forceRefresh): Observable<any> {
 
-    if (forceRefresh || this.GetForceRefresh()) 
+    if (forceRefresh) 
     {
       return this.callAndCache(url);
     }
     else
     {
-      const storedValue = from(this.cachingService.getCachedRequest(url, false));  
+      const storedValue = from(this.cachingService.getCachedRequest(url));  
       return storedValue.pipe (
         switchMap(result => {
           if(!result) 
@@ -37,27 +37,6 @@ export class ApiService {
         })
       )
     }
-  }
-
-  private GetForceRefresh() : Observable<boolean>
-  {
-    var url = environment.urlPath + '/GetConfig.php';
-    const storedValue = from(this.cachingService.getCachedRequest(url, true));  
-
-    return storedValue.pipe (
-       switchMap(result => {
-        if(!result) 
-        {
-          this.callAndCache(url);
-          return of(true);
-        }
-        else
-        {
-          var resp = this.callAndCache(url);
-          return of(result !== resp);
-        }
-      })
-    )
   }
   
   private callAndCache(url): Observable<any> {

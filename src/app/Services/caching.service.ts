@@ -22,13 +22,17 @@ export class CachingService {
 
   cacheRequests(url, data) {
 
-    const validUntill = (new Date().getTime()) + TTL * 1000;
+    var now  = new Date();
+    now.setDate(now.getDate()+1)
+    now.setHours(6,0,0,0);
+
+    const validUntill = now.getTime();
     url = `${CACHE_KEY}${url}`;
 
     return this.storage.set(url, {validUntill, data})
   }
 
-  async getCachedRequest(url, checkValid) {
+  async getCachedRequest(url) {
 
     const currentTime = new Date().getTime();
     url = `${CACHE_KEY}${url}`;
@@ -38,7 +42,7 @@ export class CachingService {
     {
       return null;
     }
-    else if (checkValid && (storedValue.validUntill < currentTime))
+    else if (storedValue.validUntill < currentTime)
     {
       await this.storage.remove(url);
       return null;
@@ -53,7 +57,7 @@ export class CachingService {
     const keys = await this.storage.keys();
 
     keys.map(async key => {
-      if (key.startsWith(CACHE_KEY)) {
+      if (key.startsWith(CACHE_KEY) ) {
         await this.storage.remove(key);
       }
     });

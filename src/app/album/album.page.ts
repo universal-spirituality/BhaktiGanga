@@ -58,7 +58,7 @@ export class AlbumPage implements OnInit {
       });
       
     });
-
+/*
     this.http
     .get(url)
     .subscribe((album) => {
@@ -76,7 +76,7 @@ export class AlbumPage implements OnInit {
       });
 
     });
-    
+  */  
   }
 
   playAll(t)
