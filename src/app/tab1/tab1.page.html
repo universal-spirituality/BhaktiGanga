@@ -14,7 +14,7 @@
 
     <ion-slides #slides [options]="opts2">
       <ion-slide *ngFor="let album of entry.albums" tappable (click)="openAlbum(album)"> 
-        <img [src]="img+dasherize(album.src_name)+'.jpg'+'?alt=media'">
+        <img [src]="img+dasherize(album.src_name)+'.jpg'">
         <span class="title">{{ album.title }}</span>
       </ion-slide>
     </ion-slides>
