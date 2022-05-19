@@ -1,0 +1,11 @@
+ion-skeleton-text {
+    --background-rgb: 255,255,255;
+}
+
+ion-img::part(image) {
+    height: var(--customheight);
+    position: var(--customposition);
+    z-index: var(--customzindex);
+    opacity: var(--customopacity);
+    max-height: var(--custommaxheight);
+}   

@@ -18,7 +18,7 @@
 
       <!-- Image of the album -->
       <div class="ion-text-center image-box" #cover>
-        <img  [src]="img+dasherize(data2.album.src_name)+'.jpg'+'?alt=media'" *ngIf="data2">
+        <app-cached-image [src]="img+dasherize(data2.album.src_name)+'.jpg'" [maxheight] = "'40vh'" *ngIf="data2"></app-cached-image>
       </div>
 
   <!-- Rest of the page content -->
@@ -31,13 +31,13 @@
         <span>Album {{ data2.album.title }} </span>
       </ion-col>
       <ion-col size="8" class="ion-text-left ion-no-padding">
-        <ion-button fill="clear" class="ion-no-margin">
+        <ion-button tappable (click)="presentToast()" fill="clear" class="ion-no-margin">
           <ion-icon name="heart-outline" slot="icon-only"></ion-icon>
         </ion-button>
-        <ion-button fill="clear">
+        <ion-button tappable (click)="presentToast()" fill="clear">
           <ion-icon name="arrow-down-circle-outline" slot="icon-only"></ion-icon>
         </ion-button>
-        <ion-button fill="clear">
+        <ion-button tappable (click)="presentToast()" fill="clear">
           <ion-icon name="ellipsis-horizontal" slot="icon-only"></ion-icon>
         </ion-button>
       </ion-col>
@@ -52,12 +52,12 @@
     <ion-list>
       <ion-item *ngFor="let t of data2.tracks" lines="none">
         
-        <ion-label item-content tappable (click)="playTrack(t)">{{ t.track_name }} </ion-label>
+        <ion-label tappable (click)="playTrack(t)">{{ t.track_name }} </ion-label>
         
         <img class= "img2" slot="start" [src]="'/assets/images/music.gif'" *ngIf="t.id === activeTrack.id">
         <img class= "img2" slot="start" [src]="'/assets/images/music.png'" *ngIf="(t.id === activeTrack.id) && !isPlaying">
-        <img class="img1" slot="start" tappable (click)="playTrack(t)" [src]="img+dasherize(t.img_name)+'.jpg'+'?alt=media'" *ngIf="t.id !== activeTrack.id">
-        <img class="img3" slot="start" tappable (click)="playTrack(t)" [src]="img+dasherize(t.img_name)+'.jpg'+'?alt=media'" *ngIf="(t.id === activeTrack.id)">
+        <app-cached-image class="img1" [height]="'55px'" [position]="'relative'" [zindex]="1" slot="start" tappable (click)="playTrack(t)" [src]="img+dasherize(t.img_name)+'.jpg'" *ngIf="t.id !== activeTrack.id"></app-cached-image>
+        <app-cached-image class="img3" [height]="'55px'" [position]="'relative'" [zindex]="2" [opacity]="0.2" slot="start" tappable (click)="playTrack(t)" [src]="img+dasherize(t.img_name)+'.jpg'" *ngIf="(t.id === activeTrack.id)"></app-cached-image>
        <!--
         <ion-button fill="clear">
           <ion-icon name="arrow-down-circle-outline" slot="icon-only"></ion-icon>
@@ -71,8 +71,8 @@
           <ion-icon slot = "icon-only" name = "heart-outline" size="medium"></ion-icon>
         </ion-button>
         -->
-        <ion-button fill = "clear">
-          <ion-icon size="small" name="ellipsis-horizontal"></ion-icon>
+        <ion-button tappable (click)="presentToast()" fill = "clear">
+          <ion-icon  size="small" name="ellipsis-horizontal"></ion-icon>
         </ion-button> 
 
       </ion-item>

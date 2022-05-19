@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router} from '@angular/router';
 import { environment } from '../../environments/environment';
 import { ApiService } from '../Services/api.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-album',
@@ -25,7 +26,8 @@ export class AlbumPage implements OnInit {
               private playerDataService:PlayerDataService, 
               public http: HttpClient, 
               private api: ApiService,
-              private router: Router) { 
+              private router: Router,
+              private toastController: ToastController) { 
 
     this.playerDataService.GetactiveTrackObservable().subscribe(at => {console.log('at', this.activeTrack)
       this.activeTrack = at;                
@@ -122,4 +124,13 @@ export class AlbumPage implements OnInit {
       return (index !== 0 ? '-' : '') + char.toLowerCase();
     });
   };
+
+  async presentToast() {
+    console.log("test");
+    const toast = await this.toastController.create({
+      message: 'Comming soon..',
+      duration: 1000
+    });
+    toast.present();
+  }
 }

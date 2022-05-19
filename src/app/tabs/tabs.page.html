@@ -9,7 +9,7 @@
 
       <ion-row class="playerTab" *ngIf="isSongLoading()">
 
-        <div class="ion-text-center loading1" >
+        <div class="ion-text-center loading1">
           <ion-spinner class="ion-text-right" color="secondary" name="dots"></ion-spinner>
         </div>
 
@@ -20,7 +20,7 @@
 
       <ion-col size="2" class="ion-no-padding" *ngIf="activeTrack">
         <div class="ion-text-center image-box">
-          <img [src]="img+dasherize(activeTrack.img_name)+'.jpg'+'?alt=media'">
+          <app-cached-image [height]="'55px'"[src]="img+dasherize(activeTrack.img_name)+'.jpg'"></app-cached-image> 
         </div>
       </ion-col>
 
