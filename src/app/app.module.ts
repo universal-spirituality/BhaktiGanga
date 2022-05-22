@@ -11,13 +11,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { Drivers } from '@ionic/storage'
 import * as CordovaSQLiteDriver from 'localforage-cordovasqlitedriver';
+import { enterAnimation } from './animations/nav-animation';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(),
+    IonicModule.forRoot({navAnimation: enterAnimation}),
     AppRoutingModule, 
     HttpClientModule,
     IonicStorageModule.forRoot({
