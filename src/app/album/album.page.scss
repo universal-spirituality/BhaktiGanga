@@ -5,25 +5,6 @@ ion-list, ion-item {
     p {
         color: #949494;
     }
-
-    .img1 {
-        height: 55px;
-        position: relative;
-        z-index: 1;
-    }
-      
-    .img2 {
-        height: 55px;
-        position: absolute;
-        z-index: 2;
-    }
-
-    .img3 {
-        height: 55px;
-        opacity: 0.2;
-        position: relative;
-        z-index: 2;
-    }
 }
 
 ion-title {
@@ -31,6 +12,12 @@ ion-title {
 }
 ion-back-button {
     color: #fff;
+}
+
+.img2 {
+    height: 55px;
+    position: absolute;
+    z-index: 2;
 }
 
 .backbutton {

@@ -8,6 +8,7 @@ import { AlbumPageRoutingModule } from './album-routing.module';
 
 import { AlbumPage } from './album.page';
 import { SharedDirectivesModule } from '../directives/shared-directives.module';
+import { SharedComponentsModule } from '../components/shared-components.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { SharedDirectivesModule } from '../directives/shared-directives.module';
     FormsModule,
     IonicModule,
     AlbumPageRoutingModule,
-    SharedDirectivesModule
+    SharedComponentsModule
   ],
   declarations: [AlbumPage]
 })
