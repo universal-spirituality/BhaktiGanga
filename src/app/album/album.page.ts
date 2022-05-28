@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import albums from '../../assets/mockdata/albums';
 import { PlayerDataService } from '../Services/player-data.service';
 import { HttpClient } from '@angular/common/http';
+import  {Http} from '@capacitor-community/http'
 import { Router} from '@angular/router';
 import { environment } from '../../environments/environment';
 import { ApiService } from '../Services/api.service';
@@ -34,7 +35,7 @@ export class AlbumPage implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, 
               private playerDataService:PlayerDataService, 
-              public http: HttpClient, 
+             // public http: Http, 
               private api: ApiService,
               private router: Router,
               private toastController: ToastController) { 
@@ -59,9 +60,11 @@ export class AlbumPage implements OnInit {
     var url = environment.urlPath + '/GetAlbum.php?album=' + title;
     
     this.api.getData(url, false).subscribe((album) =>{
+      album = album.data;
 
       var url1 = environment.urlPath + '/GetTracks.php?album=' + album[0].id;
       this.api.getData(url1, false).subscribe((data) => {
+        data = data.data;
 
         this.data2 = {album: album[0], tracks: data};
         this.playerDataService.SetTracks(this.data2.tracks);

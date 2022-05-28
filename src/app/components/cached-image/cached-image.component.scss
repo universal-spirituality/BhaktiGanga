@@ -2,7 +2,7 @@ ion-skeleton-text {
     --background-rgb: 255,255,255;
 }
 
-ion-img::part(image) {
+img {
     height: var(--customheight);
     position: var(--customposition);
     z-index: var(--customzindex);

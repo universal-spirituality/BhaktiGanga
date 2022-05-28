@@ -1,9 +1,9 @@
-<ion-img [src]="getSrc()" [style.--customheight]="height" 
+<img [src]="getSrc()" [style.--customheight]="height" 
                   [style.--customposition]="position"
                   [style.--customzindex]="zindex"
                   [style.--customopacity]="opacity"
                   [style.--custommaxheight]="maxheight"
-                  *ngIf="isUrlReady(); else loading"></ion-img>
+                  *ngIf="isUrlReady(); else loading">
 
 <ng-template #loading>
   <div class="ion-text-center" *ngIf="spinner">

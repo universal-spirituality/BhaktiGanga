@@ -77,9 +77,9 @@ export class Tab1Page implements OnInit{
 
   ngOnInit() {
 
-    this.api.getData(environment.urlPath + '/Tracks.php', false).subscribe((data) =>{
+    this.api.getData(environment.urlPath + '/Tracks.php?test=1', false).subscribe((data) =>{
 
-      
+      data = data.data;
       this.data2[0] = { title: 'All Albums', albums: data[0]};
 
       this.Tracks[0] = { title: 'Sung By Shri Datta Swami', track: data[1]};
@@ -88,6 +88,8 @@ export class Tab1Page implements OnInit{
       this.Tracks[3] = { title: 'Telugu Bhajans', track: data[4]};
 
       this.loading = false;
+
+      console.log("test2", data);
 
     });
 

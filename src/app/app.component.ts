@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CachingService } from './Services/caching.service';
-import {Filesystem, Directory} from '@capacitor/filesystem';
+import {Filesystem, Directory, FilesystemDirectory} from '@capacitor/filesystem';
 
 @Component({
   selector: 'app-root',

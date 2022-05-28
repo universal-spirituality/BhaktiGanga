@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import {Filesystem, Directory} from '@capacitor/filesystem';
+import {Filesystem, Directory, FilesystemDirectory} from '@capacitor/filesystem';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 
@@ -25,9 +25,9 @@ export class CachedImageComponent {
   @Input()
   position = "";
   @Input()
-  zindex = "";
+  zindex = null;
   @Input()
-  opacity = "";
+  opacity = null;
   @Input()
   maxheight = "";
 
@@ -54,7 +54,6 @@ export class CachedImageComponent {
       if(!UrlStore.hasOwnProperty(this.img_url))
       {
         UrlStore[this.img_url] = '';
-
         await this.storeImage(imageUrl, imageName);
   
         Filesystem.readFile({
@@ -78,13 +77,16 @@ export class CachedImageComponent {
   async storeImage(url, imageName)
   {
     const res = await fetch(url, {cache: "force-cache"});
+
     const blob = await res.blob();
     const base64Data = await this.convertBlobToBase64(blob) as string;
 
+    console.log("text");
     const savedFile = await Filesystem.writeFile({
       path: `${CACHE_FOLDER}/${imageName}`,
       data: base64Data,
-      directory: Directory.Cache
+      directory: Directory.Cache,
+      recursive: true
     });
 
     return savedFile;
@@ -100,7 +102,6 @@ export class CachedImageComponent {
       };
 
       reader.readAsDataURL(blob);
-
     })
   }
 

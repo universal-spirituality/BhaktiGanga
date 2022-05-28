@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { from, Observable, of } from 'rxjs';
 import { CachingService } from './caching.service';
 import { delay, switchMap, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import {Http} from '@capacitor-community/http' 
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 export class ApiService {
 
   ForceRefresh = null;
-  constructor(private http: HttpClient, private cachingService: CachingService) { 
+  constructor(private cachingService: CachingService) { 
 
   }
   
@@ -40,11 +40,13 @@ export class ApiService {
   }
   
   private callAndCache(url): Observable<any> {
-    return this.http.get(url).pipe(
+
+    console.log('test');
+
+    return from(Http.request({method: 'Get', url})).pipe(
       tap(res => {
         this.cachingService.cacheRequests(url, res);
       })
-
     )
   }
 }
