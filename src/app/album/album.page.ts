@@ -21,6 +21,16 @@ export class AlbumPage implements OnInit {
   img = null;
   activeTrack = null;
   isPlaying = false;
+  tracksDevi = [];
+  tracksSwami = [];
+  tracksBoth = null;
+
+  customPopoverOptions: any = {
+    header: 'Select Singer',
+    triggerAction: 'click',
+  };
+
+  Singer = "Both";
 
   constructor(private activatedRoute: ActivatedRoute, 
               private playerDataService:PlayerDataService, 
@@ -29,11 +39,11 @@ export class AlbumPage implements OnInit {
               private router: Router,
               private toastController: ToastController) { 
 
-    this.playerDataService.GetactiveTrackObservable().subscribe(at => {console.log('at', this.activeTrack)
+    this.playerDataService.GetactiveTrackObservable().subscribe(at => {
       this.activeTrack = at;                
     });
 
-    this.playerDataService.GetisPlayingObservable().subscribe(bt => {console.log('bt', this.isPlaying)
+    this.playerDataService.GetisPlayingObservable().subscribe(bt => {
       this.isPlaying = bt;               
     });
 
@@ -43,7 +53,6 @@ export class AlbumPage implements OnInit {
     const title = this.activatedRoute.snapshot.paramMap.get('title');
     const decodedTitle = decodeURIComponent(title);
     this.data = albums[decodedTitle];
-    console.log('this: ', this.data);
 
     this.img = environment.ImgUrlPath;
 
@@ -56,29 +65,15 @@ export class AlbumPage implements OnInit {
 
         this.data2 = {album: album[0], tracks: data};
         this.playerDataService.SetTracks(this.data2.tracks);
-        console.log(this.data2);
+        this.tracksBoth = data;
+
+        for (var i = 0; i < data.length; i++) {
+
+          if (data[i].singer == 0) this.tracksDevi.push(data[i]);
+          else this.tracksSwami.push(data[i]);
+        }     
       });
-      
-    });
-/*
-    this.http
-    .get(url)
-    .subscribe((album) => {
-
-      var url1 = environment.urlPath + '/GetTracks.php?album=' + album[0].id;
-
-      this.http
-      .get(url1)
-      .subscribe((data) => {
-
-        this.data2 = {album: album[0], tracks: data};
-        this.playerDataService.SetTracks(this.data2.tracks);
-        console.log(this.data2);
-
-      });
-
-    });
-  */  
+    }); 
   }
 
   playAll(t)
@@ -125,8 +120,23 @@ export class AlbumPage implements OnInit {
     });
   };
 
+  toggleTracks()
+  {
+    if (this.Singer == "Devi")
+    {
+      this.data2.tracks = this.tracksDevi;
+    }
+    else if (this.Singer == "Swami")
+    {
+      this.data2.tracks = this.tracksSwami;
+    }
+    else
+    {
+      this.data2.tracks = this.tracksBoth;
+    }
+  }
+
   async presentToast() {
-    console.log("test");
     const toast = await this.toastController.create({
       message: 'Comming soon..',
       duration: 1000

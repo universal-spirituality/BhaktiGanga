@@ -1,9 +1,16 @@
 <ion-header>
   <ion-toolbar [style.--background]="data2.album.bg_color" *ngIf="data2">
     <ion-buttons slot="start">
-      <ion-back-button class="backbutton"  text="" defaultHref="/tabs/tab1"></ion-back-button>
+      <ion-back-button class="backbutton" text="" defaultHref="/tabs/tab1"></ion-back-button>
     </ion-buttons>
-    <ion-title class = "ion-no-padding">{{ data2.album?.title }}</ion-title>
+    <p slot="start" class = "bold ion-no-padding">
+      {{ data2.album?.title }}
+    </p>
+    <ion-select slot="end" [(ngModel)]="Singer" (ionChange)="toggleTracks()" [interfaceOptions]="customPopoverOptions" interface="popover">
+      <ion-select-option value="Devi">Smt Devi</ion-select-option>
+      <ion-select-option value="Swami">Shri Datta Swami</ion-select-option>
+      <ion-select-option value="Both">Swami & Devi</ion-select-option>
+    </ion-select>
   </ion-toolbar>
 </ion-header>
 
@@ -13,8 +20,8 @@
   </div>
 </ion-content>
 
-<!--ion-content scrollEvents="true"  [fullscreen]="true" [appImageFade]="cover" *ngIf="data2" [style.--custombg]="data2.album.bg_color"-->
-  <ion-content scrollEvents="true"  [fullscreen]="true" *ngIf="data2" [style.--custombg]="data2.album.bg_color">
+<ion-content scrollEvents="true"  [fullscreen]="true" [appImageFade]="cover" *ngIf="data2" [style.--custombg]="data2.album.bg_color">
+  <!--ion-content scrollEvents="true"  [fullscreen]="true" *ngIf="data2" [style.--custombg]="data2.album.bg_color"-->
 
       <!-- Image of the album -->
       <div class="ion-text-center image-box" #cover>
@@ -47,6 +54,8 @@
         </ion-button>
       </ion-col>
     </ion-row>
+
+
 
     <!-- List of tracks -->
     <ion-list>

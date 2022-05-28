@@ -1,7 +1,6 @@
 ion-list, ion-item {
     --ion-item-background: #121212;
     color: #fff;
-
     p {
         color: #949494;
     }
@@ -14,6 +13,27 @@ ion-back-button {
     color: #fff;
 }
 
+.bold {
+    font-size: large;
+    color: #fff;
+    font-family: 'Spotify';
+    font-weight: bold;
+}
+
+
+ion-select::part(icon) {
+    color: #fff;
+    opacity: 1;
+}
+
+ion-select {
+    color: #fff;
+    margin-right: 11px;
+    font-family: 'Spotify';
+    font-weight: bold;
+    font-size: large;
+}
+
 .img2 {
     height: 55px;
     position: absolute;
@@ -21,11 +41,14 @@ ion-back-button {
 }
 
 .backbutton {
-
-    padding-right: 2vw;
+    margin-left: 5px;
 }
 
 ion-icon {
+    color: #fff;
+}
+
+ion-label {
     color: #fff;
 }
 

@@ -16,7 +16,8 @@ import { SharedComponentsModule } from '../components/shared-components.module';
     FormsModule,
     IonicModule,
     AlbumPageRoutingModule,
-    SharedComponentsModule
+    SharedComponentsModule,
+    SharedDirectivesModule
   ],
   declarations: [AlbumPage]
 })

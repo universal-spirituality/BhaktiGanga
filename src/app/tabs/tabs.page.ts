@@ -30,11 +30,11 @@ export class TabsPage {
   constructor(private playerDataService:PlayerDataService, private router: Router) {
 
    this.img = environment.ImgUrlPath;
-   this.playerDataService.GetPlayerDataObservable().subscribe(albumDataForTrack => {console.log('DataForTrack', albumDataForTrack)
+   this.playerDataService.GetPlayerDataObservable().subscribe(albumDataForTrack => {
    this.playerData = albumDataForTrack;
    });
 
-   this.playerDataService.GetactiveTrackObservable().subscribe(res => {console.log('activeTrack', res)
+   this.playerDataService.GetactiveTrackObservable().subscribe(res => {
    this.activeTrack = res;
 
    if (res.singer == 0)
@@ -48,23 +48,23 @@ export class TabsPage {
 
    });
 
-   this.playerDataService.GetprogressObservable().subscribe(res => {console.log('progress', res)
+   this.playerDataService.GetprogressObservable().subscribe(res => {
    this.progress = res;
    });
 
-   this.playerDataService.GetisPlayingObservable().subscribe(res => {console.log('isPlaying', res)
+   this.playerDataService.GetisPlayingObservable().subscribe(res => {
    this.isPlaying = res;
    });
 
-   this.playerDataService.GetdurationStartObservable().subscribe(res => {console.log('durationStart', res)
+   this.playerDataService.GetdurationStartObservable().subscribe(res => {
    this.durationStart = res;
    });
 
-   this.playerDataService.GetdurationEndObservable().subscribe(res => {console.log('durationEnd', res)
+   this.playerDataService.GetdurationEndObservable().subscribe(res => {
    this.durationEnd = res;
    });
 
-   this.playerDataService.GetdisplayPlayerObservable().subscribe(res => {console.log('displayPlayer', res)
+   this.playerDataService.GetdisplayPlayerObservable().subscribe(res => {
    this.displayPlayer = res;
    });
 
@@ -75,7 +75,6 @@ export class TabsPage {
   }
 
   setSelectedTab() {
-    console.log('called');
     this.selected = this.tabs.getSelected();
   }
 

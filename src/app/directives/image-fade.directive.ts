@@ -15,7 +15,7 @@ export class ImageFadeDirective {
     const scrollTop: number = $event.detail.scrollTop;
 
     let newOpacity = Math.max(100 - (scrollTop/3), 0);
-    let newPadding = 15 + (scrollTop/25);
+    let newPadding = 15 + (scrollTop/15);
 
     if (newPadding > 100) { newPadding = 100; }
 

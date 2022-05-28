@@ -48,28 +48,28 @@ export class Tab1Page implements OnInit{
 
     this.img = environment.ImgUrlPath;
     platform.ready().then(() => {
-      console.log('Width: ' + platform.width());
-      console.log('Height: ' + platform.height());
+      if (!environment.production) console.log('Width: ' + platform.width());
+      if (!environment.production) console.log('Height: ' + platform.height());
 
       if (platform.is('android')) {
         this.platForm = 'android';
-        console.log("running on Android device!");
+        if (!environment.production) console.log("running on Android device!");
       }
       if (platform.is('ios')) {
 
         this.platForm = 'ios';
-        console.log("running on iOS device!");
+        if (!environment.production) console.log("running on iOS device!");
       }
       if (platform.is('mobileweb')) {
 
         this.platForm = 'mobileweb';
-        console.log("running in a browser on mobile!");
+        if (!environment.production) console.log("running in a browser on mobile!");
       }
 
       if (platform.is('desktop')) {
 
         this.platForm = 'desktop';
-        console.log("running in a browser on mobile!");
+        if (!environment.production) console.log("running in a browser on mobile!");
       }
 
     });

@@ -125,7 +125,7 @@ export class PlayerDataService {
 
           this.isSongLoading = false;
   
-          console.log('play');
+         if (!environment.production) console.log('play');
 
           this.isPlaying.next(true);
           this.updateProgress();
@@ -134,14 +134,14 @@ export class PlayerDataService {
 
         onload: () => {
 
-          console.log('onload');
+          if (!environment.production) console.log('onload');
 
           this.durationEnd.next(this.player.duration());
         },
 
         onend: () => {
 
-          console.log('onend');
+          if (!environment.production) console.log('onend');
 
           this.isPlaying.next(false);
 
@@ -181,7 +181,7 @@ export class PlayerDataService {
 
     if (this.trackIndex != (this.tracks.length - 1))
     {
-      console.log('next');
+      if (!environment.production) console.log('next');
       this.start(this.tracks[this.trackIndex + 1], playAll);
     }
 
