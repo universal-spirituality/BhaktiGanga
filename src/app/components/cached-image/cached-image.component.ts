@@ -1,11 +1,8 @@
 import { Component, Input } from '@angular/core';
 import {Filesystem, Directory, FilesystemDirectory} from '@capacitor/filesystem';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { environment } from 'src/environments/environment';
 
 const CACHE_FOLDER = 'CACHED-IMG';
-
-var UrlStore = [];
 
 @Component({
   selector: 'app-cached-image',
@@ -16,7 +13,6 @@ var UrlStore = [];
 export class CachedImageComponent {
 
   _src:SafeResourceUrl = '';
-  img_url = '';
   constructor(private sanitizer: DomSanitizer) {
   }
   
@@ -39,57 +35,51 @@ export class CachedImageComponent {
 
     const imageName = imageUrl.split('/').pop();
     const fileType = imageName.split('.').pop();
-    this.img_url = imageUrl;
     
-    Filesystem.readFile({
-      directory: Directory.Cache,
-      path: `${CACHE_FOLDER}/${imageName}`
-    }).then(readFile => {
-      // set to source.
-      this._src = `data:image/${fileType};base64,${readFile.data}`;
-      UrlStore[this.img_url] = this._src;
-
-    }).catch(async (e) => {
-
-      if(!UrlStore.hasOwnProperty(this.img_url))
-      {
-        UrlStore[this.img_url] = '';
+    if(imageName.search("default") != -1)
+    {
+      this._src = "/assets/images/default.jpeg";
+    }
+    else
+    {
+      Filesystem.readFile({
+        directory: Directory.Cache,
+        path: `${CACHE_FOLDER}/${imageName}`
+      }).then(readFile => {
+        // set to source.
+        this._src = `data:image/${fileType};base64,${readFile.data}`;
+  
+      }).catch(async (e) => {
+  
         await this.storeImage(imageUrl, imageName);
-  
-        Filesystem.readFile({
-          directory: Directory.Cache,
-          path: `${CACHE_FOLDER}/${imageName}`
-        }).then(readFile => {
-          // set to source.
-          this._src = `data:image/${fileType};base64,${readFile.data}`;
-          UrlStore[this.img_url] = this._src;
-  
-        })
-      }
-    });
+    
+          Filesystem.readFile({
+            directory: Directory.Cache,
+            path: `${CACHE_FOLDER}/${imageName}`
+          }).then(readFile => {
+            // set to source.
+            this._src = `data:image/${fileType};base64,${readFile.data}`;
+    
+          })
+      
+      });
+    }
   }
 
-  getSrc()
-  {
-    return UrlStore[this.img_url];
-  }
 
   async storeImage(url, imageName)
   {
-    const res = await fetch(url, {cache: "force-cache"});
+    const res = await fetch(url);
 
     const blob = await res.blob();
     const base64Data = await this.convertBlobToBase64(blob) as string;
 
-    console.log("text");
-    const savedFile = await Filesystem.writeFile({
+     await Filesystem.writeFile({
       path: `${CACHE_FOLDER}/${imageName}`,
       data: base64Data,
       directory: Directory.Cache,
       recursive: true
     });
-
-    return savedFile;
   }
 
   convertBlobToBase64(blob: Blob)
@@ -103,11 +93,6 @@ export class CachedImageComponent {
 
       reader.readAsDataURL(blob);
     })
-  }
-
-  isUrlReady()
-  {
-    return (UrlStore[this.img_url] != '');
   }
 
 }

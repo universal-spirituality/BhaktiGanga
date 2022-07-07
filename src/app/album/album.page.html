@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar [style.--background]="data2.album.bg_color" *ngIf="data2">
+  <ion-toolbar [style.--background]="data2.album.bg_color" *ngIf="!isLoading && data2">
     <ion-buttons slot="start">
       <ion-back-button class="backbutton" text="" defaultHref="/tabs/tab1"></ion-back-button>
     </ion-buttons>
@@ -14,14 +14,14 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-text-center loading" scrollEvents="true" *ngIf="!data2" >
+<ion-content class="ion-text-center loading" scrollEvents="true" *ngIf="isLoading || !data2" >
   <div class="ion-text-center loading">
   <ion-spinner class="ion-text-right" color="secondary" name="lines"></ion-spinner>
   </div>
 </ion-content>
 
-<ion-content scrollEvents="true"  [fullscreen]="true" [appImageFade]="cover" *ngIf="data2" [style.--custombg]="data2.album.bg_color">
-  <!--ion-content scrollEvents="true"  [fullscreen]="true" *ngIf="data2" [style.--custombg]="data2.album.bg_color"-->
+<!--ion-content scrollEvents="true" [fullscreen]="true" [appImageFade]="cover" *ngIf="data2" [style.--custombg]="data2.album.bg_color"-->
+  <ion-content scrollEvents="true"  [fullscreen]="true" *ngIf="!isLoading && data2" [style.--custombg]="data2.album.bg_color">
 
       <!-- Image of the album -->
       <div class="ion-text-center image-box" #cover>

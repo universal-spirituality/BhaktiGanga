@@ -8,5 +8,5 @@ export const environment = {
   },
   urlPath: 'https://www.universal-spirituality.org',
   AudioUrlPath: 'https://firebasestorage.googleapis.com/v0/b/bhakti-ganga.appspot.com/o/bajans%2F',
-  ImgUrlPath: 'https://firebasestorage.googleapis.com/v0/b/bhakti-ganga.appspot.com/o/imgs%2F'
+  ImgUrlPath: 'https://universal-spirituality.org/bakthiganga/assets/images/'
 };

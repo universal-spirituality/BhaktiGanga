@@ -25,7 +25,7 @@ export class AlbumPage implements OnInit {
   tracksDevi = [];
   tracksSwami = [];
   tracksBoth = null;
-
+  isLoading = false;
   customPopoverOptions: any = {
     header: 'Select Singer',
     triggerAction: 'click',
@@ -51,6 +51,7 @@ export class AlbumPage implements OnInit {
   }
 
   ngOnInit() {
+    this.isLoading = true;
     const title = this.activatedRoute.snapshot.paramMap.get('title');
     const decodedTitle = decodeURIComponent(title);
     this.data = albums[decodedTitle];
@@ -59,7 +60,7 @@ export class AlbumPage implements OnInit {
 
     var url = environment.urlPath + '/GetAlbum.php?album=' + title;
     
-    this.api.getData(url, false).subscribe((album) =>{
+    this.api.getData(url, false).subscribe((album) => {
       album = album.data;
 
       var url1 = environment.urlPath + '/GetTracks.php?album=' + album[0].id;
@@ -77,6 +78,10 @@ export class AlbumPage implements OnInit {
         }     
       });
     }); 
+  }
+
+  ionViewDidEnter(){
+    this.isLoading = false;
   }
 
   playAll(t)
