@@ -21,7 +21,7 @@ export class CachingService {
     await this.storage.defineDriver(cordovaSQLiteDriver);
     await this.storage.create();
 
-   /* const storedValue = await this.storage.get(IMG_CACHE);
+    const storedValue = await this.storage.get(IMG_CACHE);
 
     console.log(storedValue);
     if (storedValue)
@@ -47,7 +47,6 @@ export class CachingService {
       const validUntill = now.getTime();
       this.storage.set(IMG_CACHE, validUntill);
     }
-    */
 
   }
 
