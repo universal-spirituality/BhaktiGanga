@@ -58,25 +58,22 @@ export class AlbumPage implements OnInit {
 
     this.img = environment.ImgUrlPath;
 
-    var url = environment.urlPath + '/GetAlbum.php?album=' + title;
+    var url = environment.urlPath + '/GetAlbumData.php?album=' + title;
     
     this.api.getData(url, false).subscribe((album) => {
       album = album.data;
 
-      var url1 = environment.urlPath + '/GetTracks.php?album=' + album[0].id;
-      this.api.getData(url1, false).subscribe((data) => {
-        data = data.data;
-
-        this.data2 = {album: album[0], tracks: data};
+      this.data2 = {album: album.albums[0], tracks: album.tracks};
         this.playerDataService.SetTracks(this.data2.tracks);
-        this.tracksBoth = data;
+        this.tracksBoth = album.tracks;
 
-        for (var i = 0; i < data.length; i++) {
+        for (var i = 0; i < album.tracks.length; i++) {
 
-          if (data[i].singer == 0) this.tracksDevi.push(data[i]);
-          else this.tracksSwami.push(data[i]);
+          if (album.tracks[i].singer == 0) this.tracksDevi.push(album.tracks[i]);
+          else this.tracksSwami.push(album.tracks[i]);
         }     
-      });
+
+
     }); 
   }
 

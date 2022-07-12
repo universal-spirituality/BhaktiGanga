@@ -89,24 +89,7 @@ export class Tab1Page implements OnInit{
 
       this.loading = false;
 
-      console.log("test2", data);
-
     });
-
- /*   this.http
-    .get(environment.urlPath + '/Tracks.php')
-    .subscribe((data) => {
-
-      this.data2[0] = { title: 'All Albums', albums: data[0]};
-
-      this.Tracks[0] = { title: 'Sung By Shri Datta Swami', track: data[1]};
-      this.Tracks[1] = { title: 'Sung By Smt. Devi', track: data[2]};
-      this.Tracks[2] = { title: 'Sanskrit Bhajans', track: data[3]};
-      this.Tracks[3] = { title: 'Telugu Bhajans', track: data[4]};
-
-      this.loading = false;
-    });
-    */
   }
 
   playTrack(t) {
